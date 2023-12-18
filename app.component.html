@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular HTTP Service Example</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      margin: 20px;
+    }
+
+    h1, h2 {
+      color: #343a40;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      height: 400px; 
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    tr:hover {
+      background-color: #e2e6ea;
+    }
+    .btn-update {
+      background-color: #3498db;
+      color: #fff;
+      border: 1px solid #3498db;
+      margin-right: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-update:hover {
+      background-color: #3498db;
+      color: #000;
+    }
+
+    .btn-delete {
+      background-color: #e74c3c;
+      color: #fff;
+      border: 1px solid
+    }
+
+    .btn-add {
+      background-color: #2ecc71;
+      color: #000000;
+      border: 1px solid #2ecc71;
+      margin-right: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-add:hover {
+      background-color: #2ecc71;
+      color: #343a40;
+    }
+table {
+      width: 100%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+     height: 400px; 
+
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Management des Employees</h1>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Tel</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.id }}</td>
+        <td><input #name type="text" class="form-control" name="name" value="{{ emp.name }}" /></td>
+        <td><input #status type="text" class="form-control" name="status" value="{{ emp.status }}" /></td>
+        <td><input #tel type="number" class="form-control" name="number" value="{{ emp.tel }}" /></td>
+        <td><input #email type="email" class="form-control" name="email" value="{{ emp.email }}" /></td>
+        <td>
+          <button class="btn btn-update" (click)="updateEmployee(emp, name.value, status.value, +tel.value, email.value)">Update</button>
+          <button class="btn btn-delete" (click)="deleteEmployee(emp.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <h2 class="text-center">Add New Employee</h2>
+  <br>
+  <button class="btn btn-add" (click)="showReactiveForm = true" style="margin: 0 auto; display: block;">Add Employee</button>
+  <br>
+<app-reactive-form *ngIf="showReactiveForm" (formSubmitted)="hideReactiveForm()"></app-reactive-form>
+</body>
+</html>
